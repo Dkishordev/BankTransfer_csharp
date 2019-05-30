@@ -10,7 +10,14 @@ namespace testcsharp
     public class banktransfer
     {
         public string result;
-	    TestDataUtils testdata = new TestDataUtils();
+	TestDataUtils testdata = new TestDataUtils();
+
+        [BeforeScenario(Order = 0)]
+        public void initialize()
+        {
+            testdata.TruncateTable("Account");
+            testdata.TruncateTable("Transfer");
+        }
 
         [Given(@"the (.*) balance is (.*)")]
         public void GivenTheBalanceIs(int Sender, int senderbalance)

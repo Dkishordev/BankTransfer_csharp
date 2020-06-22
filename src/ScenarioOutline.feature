@@ -1,3 +1,10 @@
+Feature: ScenarioOutline
+	In order to avoid silly mistakes
+	As a math idiot
+	I want to be told the sum of two numbers
+
+
+
 @test @mytag
 Scenario Outline:  Sender transfer amount to Receiver
     Given the <Sender> balance is <senderbalance>

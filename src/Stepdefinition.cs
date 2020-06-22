@@ -22,30 +22,30 @@ namespace testcsharp
         [Given(@"the (.*) balance is (.*)")]
         public void GivenTheBalanceIs(int Sender, int senderbalance)
         {
-	    testdata.InsertData_Account(Sender,senderbalance);
+            testdata.InsertData_Account(Sender, senderbalance);
         }
 
-        [Given(@"(.*) balance is (.*)")]
-        public void GivenBalanceIs(int Receiver, int receiverbalance)
+        [Given(@"(.*) has balance  (.*)")]
+        public void GivenHasBalance(int Receiver, int receiverbalance)
         {
             testdata.InsertData_Account(Receiver, receiverbalance);
         }
-        
-        [Given(@"(.*) has already transfered to (.*) (.*) on (.*)")]
-        public void GivenHasAlreadyTransferedToOn(int Sender, int Receiver, int alreadytransfered, string transferdate)
-        {
-            testdata.InsertData_Transfer(Sender, Receiver, alreadytransfered, transferdate);
-        }
-        
-        [When(@"(.*) transfers (.*) to (.*) account")]
-        public void WhenTransfersToAccount(int Sender, int Receiver, int amount)
+
+        [When(@"(.*) transfers (.*) to (.*)")]
+        public void WhenTransfersToAccount(int Sender, int amount, int Receiver)
         {
             var test = new BalanceTransaction();
             result = test.Transfer(Sender, Receiver, amount);
 
         }
-        
-        [Then(@"transfer should be (.*)")]
+
+        [Given(@"(.*) already transferred (.*) amount to (.*) on ""(.*)""")]
+        public void GivenAlreadyTransferredAmountToOn(int Sender,  int alreadytransfered, int Receiver, string transferdate)
+        {
+            testdata.InsertData_Transfer(Sender, Receiver, alreadytransfered, transferdate); 
+        }
+
+        [Then(@"transfer should be ""(.*)""")]
         public void ThenTransferShouldBe(string status)
         {
             Assert.AreEqual(status, result);
